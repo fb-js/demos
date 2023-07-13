@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BMP-JS Demo / Debug Overlay</title>
+    <link rel="stylesheet" type="text/css" href="../base.css">
+</head>
+<body>
+    <h1>BMP-JS Demo / Debug Overlay</h1>
+    <p>1 resource, 2 references. Showcase of the debug overlay.</p>
+    <div class="hr"></div>
+
+    <div id="container"></div>
+
+    <style>
+        canvas:nth-child(1) {
+            margin-right: 2ch;
+        }
+
+        .controls-table thead {
+            font-weight: bold;
+        }
+
+        .controls-table input {
+            width: 100px;
+        }
+
+        .controls-table td,
+        .controls-table {
+            border-collapse: collapse;
+            border-width: 1px;
+            border-color: #000;
+            border-style: solid;
+            box-sizing: border-box;
+            padding: 6px 24px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../darkmode.js"></script>
+    <script type="text/javascript" src="../../src/helper.js"></script>
+    <script type="text/javascript" src="../../src/bmp.js"></script>
+    <script type="text/javascript" src="../../src/bmp-plot.js"></script>
+    <script type="text/javascript" src="../../src/bmp-mods.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BMP-JS Demos</title>
+    <link rel="stylesheet" type="text/css" href="base.css">
+</head>
+<body>
+    <h1>BMP-JS Demos</h1>
+    <p>Pick and choose, you will be redirected to the demo page for a preview.</p>
+    <div class="hr"></div>
+
+    <div id="list"></div>
+
+    <script>
+        var list = document.querySelector("#list");
+        items_list = [
+            ["Blur Test", "blur-test"],
+            ["Debug Overlay", "debug-overlay"],
+            ["Fonts", "fonts"],
+            ["Load Image", "load-image"],
+            ["Magnifying Glass", "magnifying-glass"],
+            ["Replace Color", "replace-color"],
+            ["Rotate", "rotate"],
+            ["Snake-JS", "snake-js"],
+            ["Two Image Average", "two-image-average"],
+            ["X and Y Coordinates", "x-and-y-coordinates"]
+        ];
+
+        var count = 1;
+
+        for (item of items_list) {
+            var anchor = document.createElement("a");
+            anchor.innerText = count + ". " + item[0];
+            anchor.href = item[1] + "/index.html";
+            list.append(anchor);
+            ++count;
+        }
+    </script>
+
+    <script type="text/javascript" src="darkmode.js"></script>
+</body>
+</html>
