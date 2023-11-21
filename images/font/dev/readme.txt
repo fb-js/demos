@@ -1,14 +1,16 @@
 
-  BMP-JS Documentation / Development / Fonts
+  FB-JS Documentation / Development / Fonts
 
 ------------------------------------------------------------------------
 
   Author: Nurudin Imsirovic <github.com/oxou>
 
   Created: 2023-08-19 05:36 AM
-  Updated: 2023-08-19 05:55 AM
+  Updated: 2023-11-21 05:41 PM
 
   Changelog:
+    2023-11-21:
+      - Rename BMP-JS to FB-JS (Framebuffer JS)
     2023-08-19:
       - First revision
 
@@ -22,13 +24,13 @@
   Grid that's given here is for monospaced font, meaning each glyph or
   character has equal width and height.
 
-  That fact alone is crucial in the way that BMP-JS loads font atlases
+  That fact alone is crucial in the way that FB-JS loads font atlases
   and calculates their dimensions.  By not following these rules we'll
   get incorrect results.
 
   If you want to get into more technical explanations and the actual
-  implementation then take a look at the bmp_plot_text() function in
-  the src/bmp-plot.js file of the bmp-js repository.
+  implementation then take a look at the fb_plot_text() function in
+  the src/plot.js file of the fb-js repository.
 
 ------------------------------------------------------------------------
 
@@ -48,7 +50,7 @@
   position and dimensions for each glyph on the atlas.
 
   Actual images should be mono-chrome (black and white) with no anti
-  aliasing present on the edges of fonts, as BMP-JS will only draw
+  aliasing present on the edges of fonts, as FB-JS will only draw
   fonts that have white (255, 255, 255) and black (0, 0, 0) color
   ranges.
 

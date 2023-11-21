@@ -1,12 +1,12 @@
 // Copyright (C) 2023 Nurudin Imsirovic <github.com/oxou>
 //
 // Created: 2023-03-23 08:11 PM
-// Updated: 2023-03-27 03:17 AM
+// Updated: 2023-11-21 05:39 PM
 
 // Create resource (fb1 = framebuffer 1)
-var fb1 = bmp_create(768, 432, true);
-var rf1 = bmp_spawn(fb1, container); // 1st reference
-var rf2 = bmp_spawn(fb1, container); // 2nd reference (debug view)
+var fb1 = fb_create(768, 432, true);
+var rf1 = fb_spawn(fb1, container); // 1st reference
+var rf2 = fb_spawn(fb1, container); // 2nd reference (debug view)
 
 var debug = true; // Have the debug visualization enabled on the 2nd view
 
@@ -29,15 +29,15 @@ function draw_box(fb, x, y, w, h, r, g, b, s, o) {
         for (let lx = x; lx < lw; lx++) {
             for (let ly = y; ly < lh; ly++) {
                 // NOTE(oxou): This math is incorrect.
-                var color_behind = bmp_get_pixel(fb, lx, ly);
+                var color_behind = fb_get_pixel(fb, lx, ly);
                 var lr = color_behind[0] + lerp(0, r, o);
                 var lg = color_behind[1] + lerp(0, g, o);
                 var lb = color_behind[2] + lerp(0, b, o);
-                bmp_set_pixel(fb, lx, ly, lr, lg, lb);
+                fb_set_pixel(fb, lx, ly, lr, lg, lb);
             }
         }
     } else {
-        bmp_plot_rect(
+        fb_plot_rect(
             fb,
             x, y,
             w, h,
@@ -51,7 +51,7 @@ function draw_text(FB, x, y, t = null, w = true, fr = 255, fg = 255, fb = 255, b
     if (t == null)
         return;
 
-    bmp_plot_text(
+    fb_plot_text(
         FB, prefetch.font,
         x, y,
         t,
@@ -107,12 +107,12 @@ function render(draw_func, framebuffer, reference_element) {
             object[draw_func](framebuffer);
     }
 
-    bmp_replace(reference_element, framebuffer);
+    fb_replace(reference_element, framebuffer);
 }
 
 var prefetch = {};
-prefetch.font = bmp_load("../images/font/6x14/0.bmp");
-prefetch.font.props = bmp_mod_dissect_font(prefetch.font);
+prefetch.font = fb_load("../images/font/6x14/0.bmp");
+prefetch.font.props = fb_mod_dissect_font(prefetch.font);
 
 function draw_debug_on_object(fb, object) {
     var T = object;
@@ -220,7 +220,7 @@ var objects_to_draw = {
             draw_text(fb, ofst_x    , ofst_y    ,  t, false, 255, 255, 0);
         },
         draw: function(fb) {
-            bmp_plot_clear(fb, this.color.r, this.color.g, this.color.b);
+            fb_plot_clear(fb, this.color.r, this.color.g, this.color.b);
         }
     },
     box1: {
@@ -340,7 +340,7 @@ var interval_for_render = setInterval(function() {
     if (debug)
         render("draw_debug", fb1, rf2);
     else
-        bmp_replace(rf2, fb1);
+        fb_replace(rf2, fb1);
 
     render_time = time_precise() - render_time_last;
 }, 1e3 / render_fps);

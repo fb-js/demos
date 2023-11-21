@@ -2,7 +2,7 @@
 // Copyright (C) 2023 Salih Muratovic   <github.com/Soapbosnia>
 //
 // Created: 2023-05-05 11:08 PM
-// Updated: 2023-06-24 02:49 PM
+// Updated: 2023-11-21 05:43 PM
 
 // Stop the page from scrolling when using
 // the arrow keys to play the game.
@@ -25,7 +25,7 @@ function fillBlock(image, block, color) {
 
     for (let y2 = y; y2 < y + height; y2++) {
         for (let x2 = x; x2 < x + width; x2++) {
-            bmp_set_pixel(image, x2, y2, color[0], color[1], color[2]);
+            fb_set_pixel(image, x2, y2, color[0], color[1], color[2]);
         }
     }
 }
@@ -48,22 +48,22 @@ var headColor       = [220, 120,  0];
 var direction       = "right";
 var foodBlock       = newFoodBlock();
 var blockQueue      = [200, 201, 202, 203, 204, 205, 206, 207, 208, 209];
-var playground      = bmp_create(imageWidth, imageHeight, true); // Use Canvas instead of Image
-var spawnReference  = bmp_spawn(playground, container);
+var playground      = fb_create(imageWidth, imageHeight, true); // Use Canvas instead of Image
+var spawnReference  = fb_spawn(playground, container);
 
 function renderSnake() {
-    var playground = bmp_create(imageWidth, imageHeight);
+    var playground = fb_create(imageWidth, imageHeight);
 
     for (let y = 0; y < imageHeight; y++) {
         for (let x = 0; x < imageWidth; x++) {
-            bmp_set_pixel(playground, x, y, playgroundColor[0], playgroundColor[1], playgroundColor[2]);
+            fb_set_pixel(playground, x, y, playgroundColor[0], playgroundColor[1], playgroundColor[2]);
         }
     }
 
     for (let y = 0; y < imageHeight; y++) {
         for (let x = 0; x < imageWidth; x++) {
             if (x == 0 || x == imageWidth - 1 || y == 0 || y == imageHeight - 1) {
-                bmp_set_pixel(playground, x, y, 200, 0, 0);
+                fb_set_pixel(playground, x, y, 200, 0, 0);
             }
         }
     }
@@ -73,10 +73,10 @@ function renderSnake() {
             for (let x = 0; x < imageWidth; x += 10) {
                 for (let y2 = y; y2 < y + 10; y2++) {
                     for (let x2 = x; x2 < x + 10; x2++) {
-                        bmp_set_pixel(playground, x2, y2, 100, 100, 100);
+                        fb_set_pixel(playground, x2, y2, 100, 100, 100);
     
                         if (x2 == x || x2 == x + 9 || y2 == y || y2 == y + 9) {
-                            bmp_set_pixel(playground, x2, y2, 200, 0, 0);
+                            fb_set_pixel(playground, x2, y2, 200, 0, 0);
                         }
                     }
                 }
@@ -121,7 +121,7 @@ function renderSnake() {
         foodBlock = newFoodBlock();
     }
 
-    bmp_replace(spawnReference, playground);
+    fb_replace(spawnReference, playground);
 }
 setInterval(renderSnake, updateInterval);
 
